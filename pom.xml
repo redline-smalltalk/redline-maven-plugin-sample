@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>st.redline.maven.sample</groupId>
+  <artifactId>redline-maven-plugin-sample</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Redline Maven Plugin Sample</name>
+  <url>http://github.com/robertrolandorg/redline-maven-plugin-sample</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <redline.runtime.path>C:/Users/rroland/Source/redline-smalltalk/src/main/smalltalk</redline.runtime.path>
+        <redline.source.path>C:/Users/rroland/Source/redline-smalltalk/src/test/smalltalk</redline.source.path>
+        <class.to.run>st.redline.HelloWorld</class.to.run>
+      </properties>
+    </profile>
+  </profiles>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>st.redline.maven</groupId>
+        <artifactId>redline-maven-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>stic</goal>            
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <runtimePath>${redline.runtime.path}</runtimePath>
+          <sourcePath>${redline.source.path}</sourcePath>
+          <sourceClass>${class.to.run}</sourceClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
